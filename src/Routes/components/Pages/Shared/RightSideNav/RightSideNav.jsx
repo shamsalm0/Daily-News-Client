@@ -1,16 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaGoogle,FaGithub, FaFacebook, FaWhatsapp, FaTwitter, FaTwitch } from "react-icons/fa";
 import manCity from '../../../../../assets/manCity.jpg'
 import manCity2 from '../../../../../assets/manCity2.jpg'
 import manCity3 from '../../../../../assets/manCity3.jpg'
 import kdb from '../../../../../assets/kdb.jpg'
+import { AuthContext } from '../../../../../context/AuthProvider';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const RightSideNav = () => {
+  const{loginProvider}=useContext(AuthContext)
+const provider=new GoogleAuthProvider();
+
+const handleGoogleLogIn=()=>{
+  loginProvider(provider)
+  .then(result=>{
+    const user=result.user;
+    console.log(user)
+  })
+  .catch(error=>{console.error(error)})
+
+}
     return (
+      
         <div>
-     <div>
-     <button className="btn mb-2 flex flex-col items-center justify-center  whitespace-nowrap"><FaGoogle className='mr-2 inline-block'></FaGoogle><span className='inline-block'>SignIn with Google</span></button>
-  <button className="btn mb-2 flex flex-col items-center justify-center  whitespace-nowrap "><FaGithub></FaGithub><span>SignIn with GitHub</span></button>
+     <div className=''>
+      <p>LogIn With</p>
+     <button onClick={handleGoogleLogIn} className="btn mb-2 flex flex-col items-center justify-center  whitespace-nowrap"><FaGoogle className='mr-2 inline-block'></FaGoogle><span className='inline-block'>Google</span></button>
+  <button className="btn mb-2 flex flex-col items-center justify-center  whitespace-nowrap "><FaGithub></FaGithub><span>GitHub</span></button>
+  <p>Follow us On</p>
   <button className="btn mb-2 flex flex-col items-center justify-center  whitespace-nowrap "><FaFacebook></FaFacebook><span>Facebook</span></button>
   <button className="btn mb-2 flex flex-col items-center justify-center  whitespace-nowrap "><FaWhatsapp></FaWhatsapp><span>WhatsApp</span></button>
   <button className="btn mb-2 flex flex-col items-center justify-center  whitespace-nowrap "><FaTwitter></FaTwitter><span>Twitter</span></button>

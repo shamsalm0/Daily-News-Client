@@ -1,0 +1,14 @@
+@media screen and (max-width:430px) {
+    .btn{
+      width: 15px;
+      height: 3px;
+      margin-right: 2px;
+      
+    }
+
+    .log{
+        font-size: 10px;
+        display: inline;
+    }
+    
+}
