@@ -3,6 +3,7 @@ import LeftSideNav from '../LeftSideNav/LeftSideNav';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../../../context/AuthProvider';
 import './Header.css'
+import { FaUser } from 'react-icons/fa';
 const Header = () => {
     const {user,logOut}=useContext(AuthContext)
     return (
@@ -27,7 +28,11 @@ const Header = () => {
     {
       user?.uid?<>
     <p>{user?.displayName}</p>
-        <img src={user?.photoURL} alt="" srcset="" />
+        {
+          user?.photoURL?<img src={user?.photoURL} style={{height:'40px',width:'40px',borderRadius:'10px'}} alt="" srcset="" />:
+         <Link to='/profile'><FaUser></FaUser></Link> 
+        }
+        
         <button onClick={logOut} className='btn  btn-info mr-6'><Link className='text-bold log' to='/signin'>Sign Out</Link></button>
       </>:
       <>

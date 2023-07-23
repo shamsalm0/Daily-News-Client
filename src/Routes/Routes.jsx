@@ -6,6 +6,7 @@ import News from "./components/Pages/News/News";
 import SignIn from "./components/Pages/SIgnIn/SignIn";
 import SignUp from "./components/Pages/SignUp/SignUp";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Profile from "./components/Pages/Profile/Profile";
 
 export const router=createBrowserRouter([
     {
@@ -34,6 +35,10 @@ export const router=createBrowserRouter([
         {
             path:'/signup',
             element:<SignUp></SignUp>
+        },
+        {
+            path:'/profile',
+            element:<Profile></Profile>
         }
      ] 
     }

@@ -2,9 +2,10 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate, useNavigation } from 'react-router-dom';
 import './SignIn.css'
 import { AuthContext } from '../../../../context/AuthProvider';
+import { toast } from 'react-hot-toast';
 
 const SignIn = () => {
-   const{LogIn}=useContext(AuthContext);
+   const{LogIn,setLoading}=useContext(AuthContext);
    const [error,setError]=useState('');
    const location=useLocation();
    const navigate=useNavigate();
@@ -19,11 +20,17 @@ const SignIn = () => {
         const user=result.user;
         console.log(user)
         setError('');
-        navigate(from,{replace:true})
+        if(user.emailVerified){
+            navigate(from,{replace:true})
+        }
+        else{
+            toast.error('please verify your email')
+        }
     })
     .catch(error=>{console.error(error)
     setError(error.message);
     })
+    .finally(()=>{setLoading(false)})
    }
     return (
         <div className='container'>
